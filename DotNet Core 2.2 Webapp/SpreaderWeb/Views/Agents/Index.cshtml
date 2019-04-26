@@ -1,19 +1,25 @@
 ﻿@model IEnumerable<SpreaderWeb.Models.Agents>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Agents";
 }
 
-<h1>Index</h1>
+<h1>Agents</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Created)
+                @Html.DisplayNameFor(model => model.Netname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Active)
@@ -22,19 +28,7 @@
                 @Html.DisplayNameFor(model => model.Lastping)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Netname)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Version)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cpucount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Totalmemory)
             </th>
             <th></th>
         </tr>
@@ -43,7 +37,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                @Html.DisplayFor(modelItem => item.Netname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
@@ -52,24 +49,18 @@
                 @Html.DisplayFor(modelItem => item.Lastping)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Netname)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Version)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cpucount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Totalmemory)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><div> | </div>
+                }
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                {
+                    <div> | </div><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
             </td>
         </tr>
 }

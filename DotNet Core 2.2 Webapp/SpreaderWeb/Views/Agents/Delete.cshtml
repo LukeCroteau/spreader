@@ -1,7 +1,7 @@
 ﻿@model SpreaderWeb.Models.Agents
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Agent";
 }
 
 <h1>Delete</h1>
@@ -63,7 +63,10 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        }
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
