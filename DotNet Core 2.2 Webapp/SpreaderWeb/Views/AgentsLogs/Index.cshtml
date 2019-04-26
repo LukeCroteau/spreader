@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SpreaderWeb.Models.AgentsLogView>
+
+@{
+    ViewData["Title"] = "Recent Log Entries";
+}
+
+<h1>Recent Log Entries</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentsLogCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogTypeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentsLogCreated)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Agents" asp-route-id="@item.AgentId">@item.AgentName</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogTypeDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId">@item.JobName</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
