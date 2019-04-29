@@ -29,6 +29,7 @@ namespace SpreaderWeb.Models
         public virtual DbSet<Tasks> Tasks { get; set; }
 
         public virtual DbSet<AgentsLogView> AgentsLogViews { get; set; }
+        public virtual DbSet<AgentsWorkersView> AgentsWorkersViews { get; set; }
 
         // Unable to generate entity type for table 'public.newagent'. Please see the warning messages.
         // Unable to generate entity type for table 'public.jobid'. Please see the warning messages.
@@ -177,6 +178,23 @@ namespace SpreaderWeb.Models
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasColumnType("character varying");
+            });
+
+            modelBuilder.Entity<AgentsWorkersView>(entity =>
+            {
+                entity.ToTable("view_agents_workers");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.AgentsWorkersCreated).HasColumnName("created");
+                entity.Property(e => e.Active).HasColumnName("active");
+                entity.Property(e => e.Lastping).HasColumnName("lastping");
+                entity.Property(e => e.Agentid).HasColumnName("agentid");
+                entity.Property(e => e.Agentname).HasColumnName("agentname");
+                entity.Property(e => e.Netname).HasColumnName("netname");
+                entity.Property(e => e.JobId).HasColumnName("jobid");
+                entity.Property(e => e.JobName).HasColumnName("jobname");
+                entity.Property(e => e.Version).HasColumnName("version");
+                entity.Property(e => e.Accesscodes).HasColumnName("accesscodes");
             });
 
             modelBuilder.Entity<AgentsWorkers>(entity =>

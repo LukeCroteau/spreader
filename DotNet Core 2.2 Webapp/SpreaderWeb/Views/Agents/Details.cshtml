@@ -1,69 +1,128 @@
-﻿@model SpreaderWeb.Models.Agents
+﻿@model SpreaderWeb.Models.AgentAndWorkersMerge
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Agent Details";
 }
 
-<h1>Details</h1>
+<h1>Agent Details</h1>
 
 <div>
-    <h4>Agents</h4>
+    <h4>
+        @Html.DisplayFor(model => model.Agent.Name) @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Agent.Id">&nbsp;&nbsp;&nbsp;Edit</a>
+        }
+    </h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Created)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Created)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Created)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Created)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Active)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Active)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lastping)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Lastping)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lastping)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Lastping)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Netname)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Netname)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Netname)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Version)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Netname)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Version)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Version)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Cpucount)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Version)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Cpucount)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpucount)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Agent.Totalmemory)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cpucount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Totalmemory)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Totalmemory)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Totalmemory)
         </dd>
     </dl>
 </div>
+<br />
+<h4>Workers</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].AgentsWorkersCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Lastping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Version)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Accesscodes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Workers)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentsWorkersCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastping)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId">@item.JobName</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accesscodes)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                {
+                    <a asp-action="Details" asp-controller="Workers" asp-route-id="@item.Id">Edit</a><div> | </div>
+                }
+                <a asp-action="Details" asp-controller="Workers" asp-route-id="@item.Id">Details</a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                {
+                    <div> | </div><a asp-action="Delete" asp-controller="Workers" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
 <div>
-    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a><div> | </div>
-    }
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Agent List</a>
 </div>

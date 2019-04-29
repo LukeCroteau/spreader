@@ -39,7 +39,13 @@ namespace SpreaderWeb.Controllers
                 return NotFound();
             }
 
-            return View(agents);
+            AgentAndWorkersMerge TempModel = new AgentAndWorkersMerge
+            {
+                Agent = agents,
+                Workers = await _context.AgentsWorkersViews.Where(e=> e.Agentid == agents.Id).ToListAsync()
+            };
+
+            return View(TempModel);
         }
 
         // GET: Agents/Create

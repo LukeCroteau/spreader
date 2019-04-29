@@ -16,7 +16,7 @@ namespace SpreaderWeb.Models
 
         public int Id { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime? Created { get; set; }
         public bool? Active { get; set; }
 
@@ -42,5 +42,11 @@ namespace SpreaderWeb.Models
         public virtual ICollection<AgentsLog> AgentsLog { get; set; }
         public virtual ICollection<AgentsWorkers> AgentsWorkers { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }
+    }
+
+    public class AgentAndWorkersMerge
+    {
+        public Agents Agent { get; set; }
+        public List<AgentsWorkersView> Workers { get; set; }
     }
 }

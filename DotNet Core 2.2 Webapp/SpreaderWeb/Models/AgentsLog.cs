@@ -39,8 +39,9 @@ namespace SpreaderWeb.Models
         [Display(Name = "Log Type")]
         public string LogTypeDescription { get; private set; }
 
-        [Display(Name = "Agent Name")]
+        [Display(Name = "Message")]
         public string Message { get; private set; }
+
         public int? JobId { get; private set; }
 
         [Display(Name = "Job Name")]
