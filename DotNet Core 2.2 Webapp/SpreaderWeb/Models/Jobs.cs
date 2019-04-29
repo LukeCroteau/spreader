@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SpreaderWeb.Models
 {
@@ -16,11 +17,19 @@ namespace SpreaderWeb.Models
         }
 
         public int Id { get; set; }
+
+        [Display(Name = "Created")]
+        [DataType(DataType.DateTime)]
         public DateTime? Created { get; set; }
+
         public bool? Active { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+
+        [Display(Name = "Package Location")]
         public string Uri { get; set; }
+
+        [Display(Name = "Parameters")]
         public string Params { get; set; }
 
         public virtual ICollection<AgentsLog> AgentsLog { get; set; }

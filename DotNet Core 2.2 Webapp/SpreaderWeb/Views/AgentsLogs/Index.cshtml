@@ -16,13 +16,16 @@
                 @Html.DisplayNameFor(model => model.AgentName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LogTypeDescription)
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskKey)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Message)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.JobName)
+                @Html.DisplayNameFor(model => model.LogTypeDescription)
             </th>
         </tr>
     </thead>
@@ -37,13 +40,16 @@
                 <a asp-action="Details" asp-controller="Agents" asp-route-id="@item.AgentId">@item.AgentName</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LogTypeDescription)
+                <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId">@item.JobName</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Tasks" asp-route-id="@item.TaskId">@item.TaskKey</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
-                <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId">@item.JobName</a>
+                @Html.DisplayFor(modelItem => item.LogTypeDescription)
             </td>
         </tr>
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SpreaderWeb.Models
 {
@@ -23,15 +24,33 @@ namespace SpreaderWeb.Models
     public partial class AgentsLogView
     {
         public int Id { get; set; }
+
+        [Display(Name = "Created")]
+        [DataType(DataType.DateTime)]
         public DateTime? AgentsLogCreated { get; private set; }
+
         public int? AgentId { get; private set; }
+
+        [Display(Name = "Agent Name")]
         public string AgentName { get; private set; }
+
         public int? LogType { get; private set; }
+
+        [Display(Name = "Log Type")]
         public string LogTypeDescription { get; private set; }
+
+        [Display(Name = "Agent Name")]
         public string Message { get; private set; }
         public int? JobId { get; private set; }
+
+        [Display(Name = "Job Name")]
         public string JobName { get; private set; }
+
         public int? TaskId { get; private set; }
+
+        [Display(Name = "TaskKey")]
+        public string TaskKey { get; private set; }
+
         public int? WorkerId { get; private set; }
     }
 }

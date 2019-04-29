@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SpreaderWeb.Models
 {
@@ -14,7 +15,11 @@ namespace SpreaderWeb.Models
 
         public int Id { get; set; }
         public int Jobid { get; set; }
+
+        [Display(Name = "Created")]
+        [DataType(DataType.DateTime)]
         public DateTime? Created { get; set; }
+
         public string Code { get; set; }
         public string Name { get; set; }
 

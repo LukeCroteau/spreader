@@ -21,9 +21,8 @@ namespace SpreaderWeb.Controllers
         // GET: AgentsLogs
         public async Task<IActionResult> Index()
         {
-            //var blaze_dbContext = _context.AgentsLog.Include(a => a.Agent).Include(a => a.Job).Include(a => a.LogTypeNavigation).Include(a => a.Worker);
             var blaze_dbContext = _context.AgentsLogViews;
-            return View(await blaze_dbContext.OrderByDescending(x => x.AgentsLogCreated).Take(50).ToListAsync());
+            return View(await blaze_dbContext.OrderByDescending(x => x.AgentsLogCreated).Take(100).ToListAsync());
         }
 
         // GET: AgentsLogs/Details/5

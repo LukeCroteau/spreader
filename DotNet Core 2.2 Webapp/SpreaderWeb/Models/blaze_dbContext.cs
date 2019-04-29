@@ -89,6 +89,7 @@ namespace SpreaderWeb.Models
                 entity.Property(e => e.JobId).HasColumnName("jobid");
                 entity.Property(e => e.JobName).HasColumnName("jobname");
                 entity.Property(e => e.TaskId).HasColumnName("taskid");
+                entity.Property(e => e.TaskKey).HasColumnName("taskkey");
                 entity.Property(e => e.WorkerId).HasColumnName("workerid");
             });
 
