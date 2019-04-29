@@ -49,7 +49,7 @@ namespace SpreaderWeb.Models
 
         public int? TaskId { get; private set; }
 
-        [Display(Name = "TaskKey")]
+        [Display(Name = "Task Key")]
         public string TaskKey { get; private set; }
 
         public int? WorkerId { get; private set; }

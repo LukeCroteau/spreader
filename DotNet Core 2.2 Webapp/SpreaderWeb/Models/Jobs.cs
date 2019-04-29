@@ -39,4 +39,10 @@ namespace SpreaderWeb.Models
         public virtual ICollection<JobsLog> JobsLog { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }
     }
+
+    public class JobAndWorkersMerge
+    {
+        public Jobs Job { get; set; }
+        public List<AgentsWorkersView> Workers { get; set; }
+    }
 }

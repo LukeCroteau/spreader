@@ -1,0 +1,120 @@
+﻿@model SpreaderWeb.Models.JobAndWorkersMerge
+
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h1>Job Details</h1>
+
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.Job.Name) @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Job.Id">&nbsp;&nbsp;&nbsp;Edit</a>
+        }
+    </h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Created)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Active)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Code)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Uri)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Uri)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.Params)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Params)
+        </dd>
+    </dl>
+</div>
+<br />
+<h4>Workers</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].AgentsWorkersCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Lastping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Version)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workers[0].Accesscodes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Workers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgentsWorkersCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastping)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Version)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accesscodes)
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Details" asp-controller="Workers" asp-route-id="@item.Id">Edit</a><div> | </div>
+                    }
+                    <a asp-action="Details" asp-controller="Workers" asp-route-id="@item.Id">Details</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <div> | </div><a asp-action="Delete" asp-controller="Workers" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Job.Id">Edit</a><div> | </div>
+    }
+    <a asp-action="Index">Back to Job List</a>
+</div>
