@@ -24,7 +24,7 @@ What we'd like to do is let our awesome Database server handle the heavy lifting
 * Develop Stored Procedures for some of the most common databases (MySQL, MSSQL, PostgreSQL) to be used with our clients.
 * Create Bootstrap code in Python (since that's my primary language currently) to demonstrate usage of our system.
 * Create an Example Web GUI to monitor our system.
-    * I'll be using .Net Core 2.2 to create the initial Reference Web GUI, since we have an abundance of IIS servers available already.
+    * A reference .Net Core 2.2 App can be found [Here](https://github.com/LukeCroteau/spreader_dotnetcore_webui).
     * Our templates will be able to be modified to suit whichever server/dialect/etc you prefer, thanks to the Razor being an easy to use template engine.
     * But I'm sure someone will contribute some other Web GUIs eventually!
 * Another project, [PySpreader Client Package](https://github.com/LukeCroteau/pyspreader_client_package) contains a fully built Python client, available via PyPI, and will be kept up to date with new functionality
