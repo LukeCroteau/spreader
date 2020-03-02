@@ -293,7 +293,7 @@ CREATE OR REPLACE FUNCTION task_add(AJobID integer, ATaskKey text, AParams text,
       jobtableid = gettableid('public','jobs');
       PERFORM pg_advisory_lock(jobtableid,AJobID);
       BEGIN
-        PERFORM id FROM tasks WHERE jobid = AJobID AND taskkey = TaskKeyValue AND (NOT processed OR processed_with_errors) LIMIT 1;
+        PERFORM id FROM tasks WHERE jobid = AJobID AND taskkey = TaskKeyValue AND (NOT processed AND processed_with_errors) LIMIT 1;
         IF FOUND THEN
           RAISE EXCEPTION 'Task Key in use for Job #%: %', AJobID, TaskKeyValue;
         END IF;
